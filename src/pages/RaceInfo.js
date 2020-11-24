@@ -76,6 +76,21 @@ background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 height:100vh;
+h1{
+    text-align: center;
+    background: #ffffffa3;
+    padding: 5px;
+    width: fit-content;
+    margin: 0 auto;
+}
+ul{
+    width: 80%;
+    list-style: none;
+    margin-block-start: unset;
+    margin-block-end: unset;
+    padding-inline-start: unset;
+    margin: 0 auto;
+}
 li{
     list-style: none;
 }

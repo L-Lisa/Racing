@@ -39,15 +39,11 @@ export const Display = ({ id, startTime, gameType }) => {
     return (
         <Wrapper>
             <GameInfo>
-            <p>{gameType}</p>
-            <div> Arrange on time 
-                
-              
-                {startTime}
-       
+                <h1>{gameType}</h1>
+                <div> Closest games & results : {startTime}
                 </div>
             </GameInfo>
-           
+
             {racesArr.map(raceItem =>
                 <>
                     <RacesInfo>
@@ -74,14 +70,17 @@ export const Display = ({ id, startTime, gameType }) => {
 
 const RacesInfo = styled.div`
 background:papayawhip;
+
 `;
 const Wrapper = styled.main`
-background:#fff;
-padding:3px;
+background:#ffffffa3;
+padding:5px;
 `;
 const RacesDiv = styled.article`
-background:pink;
+background:#d9d9de;
 `;
-const GameInfo=styled.div`
-background:greenyellow;
+const GameInfo = styled.div`
+background:#89afdc;
+padding:3px;
+text-align:center;
 `
