@@ -10,19 +10,10 @@ export const Display = ({ id, startTime, gameType }) => {
     const typeURL = `https://www.atg.se/services/racinginfo/v1/api/games/${id}`
     const [racesArr, setRacesArr] = useState([""])
     const [showInfo, setShowInfo] = useState(false)
+    const [expand, setExpand] = useState(false)
     const startsArrays = racesArr.map(startItem => startItem.starts)
     console.log(startsArrays)
-    /*  const singleStart = startsArrays.map(aStart => aStart) */
-    //first start
-    /*   console.log(startsArrays[0].map(team => team.driver.firstName)) */
-    /* 
-    const [driver, setDriver] = useState("")
-    const [starts, setStarts] = useState([""])
-   
-    console.log(startsArrays)
-    console.log(racesArr)
-    console.log(startsArrays.map(oneStart => oneStart.id))
- */
+
 
     useEffect(() => {
         fetch(typeURL)
@@ -43,18 +34,28 @@ export const Display = ({ id, startTime, gameType }) => {
 
     const ShowDetails = () => {
         setShowInfo(!showInfo)
+        setExpand(!expand)
     }
     return (
         <Wrapper>
+            <GameInfo>
             <p>{gameType}</p>
-            <div> Sort on time {startTime}</div>
+            <div> Arrange on time 
+                
+              
+                {startTime}
+       
+                </div>
+            </GameInfo>
+           
             {racesArr.map(raceItem =>
                 <>
                     <RacesInfo>
-                        <RacesDiv onClick={ShowDetails}>
+                        <RacesDiv >
                             <p>Race number: {raceItem.number}</p>
                             <p>Race name: {raceItem.name}</p>
                             <p>Scheduled start time: {raceItem.scheduledStartTime}</p>
+                            <div onClick={ShowDetails}>Start info: ⬇️</div>
                         </RacesDiv>
 
                         {/*   {raceItem.starts.map(start =>
@@ -63,27 +64,24 @@ export const Display = ({ id, startTime, gameType }) => {
                             <p> {team.driver.firstName}</p>
                         ))}  */}
 
-
-                        {showInfo && <Expanded startsArrays={startsArrays} />}
+                        {showInfo && <Expanded startsArrays={startsArrays} setShowInfo={setShowInfo} showInfo={showInfo} expand={expand} />}
                     </RacesInfo>
                 </>
             )}
-
-
-
         </Wrapper>
     )
 }
 
-
 const RacesInfo = styled.div`
 background:papayawhip;
 `;
-
 const Wrapper = styled.main`
-background:black;
+background:#fff;
+padding:3px;
 `;
-
 const RacesDiv = styled.article`
 background:pink;
 `;
+const GameInfo=styled.div`
+background:greenyellow;
+`

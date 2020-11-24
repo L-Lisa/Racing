@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import moment from "moment"
 import { Display } from '../components/Display'
+import styled from "styled-components/macro";
+import trav from "../images/trav.jpg"
 
 export const RaceInfo = () => {
     const [gameType, setGameType] = useState("")
@@ -38,9 +40,9 @@ export const RaceInfo = () => {
 
     }
     return (
-        <>
+        <Background>
 
-            <div>hello race info</div>
+            <h1> Games to play</h1>
             {selectedInfo.sort(item => moment(item.startTime).fromNow).map(item =>
                 <ul>
                     <li> <Display key={item.startTime} {...item} gameType={gameType} /></li >
@@ -63,6 +65,18 @@ export const RaceInfo = () => {
                 </label>
                 {gameType}
             </form>
-        </>
+        </Background>
     )
 }
+
+
+const Background = styled.main`
+background-image: url(${trav});
+background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+height:100vh;
+li{
+    list-style: none;
+}
+`;

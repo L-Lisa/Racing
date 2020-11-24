@@ -3,16 +3,12 @@ import moment from "moment"
 import styled from "styled-components/macro";
 
 
-export const Expanded = ({ startsArrays }) => {
-    const [showStartInfo, setShowStartInfo] = useState(false)
+export const Expanded = ({ startsArrays, expand }) => {
 
     return (
         <>
             <StartsInfo>
                 <>
-                    <div>
-
-                    </div>
                     {startsArrays.map(singleStart =>
                         <>
                             <Astart>
@@ -20,13 +16,13 @@ export const Expanded = ({ startsArrays }) => {
                             </Astart>
                             {singleStart.map(team =>
                                 <>
-
-                                    <Team>
-                                        <p>Startnr: {team.number} </p>
-
-                                        {team.driver.firstName}
-                                        {team.driver.lastName}
-                                        <p>{team.horse.name}</p>
+                                    <Team className={expand ? `hidden` : `expand`}>
+                                        <DetailsDiv>
+                                            <span> Startnr: {team.number}  {" "}</span>{" "}
+                                            <span> {team.driver.firstName}
+                                                {team.driver.lastName}  </span>{" "}
+                                            <span>   Horse: {team.horse.name}</span>
+                                        </DetailsDiv>
                                     </Team>
                                 </>
                             )}
@@ -37,6 +33,9 @@ export const Expanded = ({ startsArrays }) => {
         </>
     )
 }
+const DetailsDiv = styled.div`
+display:flex;
+`;
 const StartsInfo = styled.div`
 background:lightgray;
 `;
@@ -44,6 +43,21 @@ const Team = styled.div`
 background:blue;
 display:flex;
 border: 1px solid red;
+.expand {
+display: inline;
+}
+.hidden{
+    position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap; 
+      border: 0; 
+}
+
 `;
 const Astart = styled.article`
 background:cornflowerblue;
