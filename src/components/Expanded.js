@@ -54,7 +54,6 @@ export const Expanded = ({ startsArrays, expand }) => {
                                             <span>   Horse: {team.horse.name}</span>
                                             <span>   Father: {team.horse.pedigree.father.name}</span>
                                             <span>   Trainer: {team.horse.trainer.firstName} {team.horse.trainer.lastName}</span>
-                                            {/*    {(team.result.finishOrder) && <span>   Result: {team.result.finishOrder}</span>} */}
                                         </DetailsDiv>
                                     </Team>
                                 </>

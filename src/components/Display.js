@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import { Expanded } from "./Expanded"
 
 const RacesInfo = styled.div`
-background:papayawhip;
+background:#ffffffa3;
 `;
 const Wrapper = styled.main`
 background:#ffffffa3;
@@ -27,8 +27,6 @@ export const Display = ({ id, startTime, gameType }) => {
     const [expand, setExpand] = useState(false)
     const startsArrays = racesArr.map(startItem => startItem.starts)
     console.log(startsArrays)
-
-
     useEffect(() => {
         fetch(typeURL)
             .then((res) => {
@@ -38,12 +36,9 @@ export const Display = ({ id, startTime, gameType }) => {
                 return res.json();
             })
             .then((json) => {
-                console.log(json)
-                console.log(json.races)
                 setRacesArr(json.races)
             })
     }, [id])
-
 
     const ShowDetails = () => {
         setShowInfo(!showInfo)

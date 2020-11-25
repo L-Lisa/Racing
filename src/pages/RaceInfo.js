@@ -4,6 +4,7 @@ import { Display } from '../components/Display'
 import styled from "styled-components/macro";
 import trav from "../images/race.jpg"
 
+
 const Background = styled.main`
 background-image: url(${trav});
 background-position: center;
@@ -37,16 +38,16 @@ const Upcoming = styled.li`
 border: 1px solid green;
 `;
 
-
 export const RaceInfo = () => {
     const [gameType, setGameType] = useState("")
     const [selectedInfo, setSelectedInfo] = useState([])
     const [selectedId, setSelectedId] = useState("")
     const [selectedResults, setSelectedResults] = useState([])
+    const [resultId, setResultsId] = useState("")
     const handleSubmit = () => {
         const errorMessage = { code: 403, message: "cant fetch data" };
         const typeURL = `https://www.atg.se/services/racinginfo/v1/api/products/${gameType}`
-
+        const ResultsURL = `https://www.atg.se/services/racinginfo/v1/api/games/${resultId}`
         fetch(typeURL)
             .then((res) => {
                 if (!res.ok) {
@@ -55,32 +56,15 @@ export const RaceInfo = () => {
                 return res.json();
             })
             .then((json) => {
-                console.log(json)
-                console.log(json.results)
-                console.log(json.upcoming)
-                console.log(json.upcoming[0].id)
-                console.log(json.results[0].id)
-                console.log(json.results[0].startTime)
                 setSelectedInfo(json.upcoming)
                 setSelectedResults(json.results)
-                console.log(selectedId)
+                setResultsId(json.results.map(IdItem => IdItem.id))
             })
     }
+
     return (
         <Background>
-
             <h1> Games to play</h1>
-            {selectedInfo.sort(item => moment(item.startTime).fromNow).map(item =>
-                <ul>
-                    <Upcoming> <Display key={item.startTime} {...item} gameType={gameType} /></Upcoming >
-                </ul>
-            )
-            } {selectedResults.sort(item => moment(item.startTime).fromNow).map(item =>
-                <ul>
-                    <Result> <Display key={item.startTime} {...item} gameType={gameType} /></Result >
-                </ul>
-            )
-            }
             <form onSubmit={(e) => handleSubmit(e.preventDefault())} >
                 <label>
                     <select onChange={(e) => setGameType(e.target.value)}>
@@ -94,6 +78,17 @@ export const RaceInfo = () => {
                 </label>
                 {gameType}
             </form>
+            {selectedInfo.sort(item => moment(item.startTime).fromNow).map(item =>
+                <ul>
+                    <Upcoming> <Display key={item.startTime} {...item} gameType={gameType} /></Upcoming >
+                </ul>
+            )
+            } {selectedResults.sort(item => moment(item.startTime).fromNow).map(item =>
+                <ul>
+                    <Result> <Display key={item.startTime} {...item} gameType={gameType} /></Result >
+                </ul>
+            )
+            }
         </Background>
     )
 }
