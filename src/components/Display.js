@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import moment from "moment"
 import styled from "styled-components/macro";
 import { Expanded } from "./Expanded"
 
@@ -26,7 +25,6 @@ export const Display = ({ id, startTime, gameType }) => {
     const [showInfo, setShowInfo] = useState(false)
     const [expand, setExpand] = useState(false)
     const startsArrays = racesArr.map(startItem => startItem.starts)
-    console.log(startsArrays)
     useEffect(() => {
         fetch(typeURL)
             .then((res) => {
@@ -48,7 +46,7 @@ export const Display = ({ id, startTime, gameType }) => {
         <Wrapper>
             <GameInfo>
                 <h1>{gameType}</h1>
-                <div> Closest games & results : {startTime}
+                <div> Closest Races & results : {startTime}
                 </div>
             </GameInfo>
 

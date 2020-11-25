@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import moment from "moment"
 import { Display } from '../components/Display'
 import styled from "styled-components/macro";
@@ -41,13 +41,12 @@ border: 1px solid green;
 export const RaceInfo = () => {
     const [gameType, setGameType] = useState("")
     const [selectedInfo, setSelectedInfo] = useState([])
-    const [selectedId, setSelectedId] = useState("")
     const [selectedResults, setSelectedResults] = useState([])
     const [resultId, setResultsId] = useState("")
     const handleSubmit = () => {
         const errorMessage = { code: 403, message: "cant fetch data" };
         const typeURL = `https://www.atg.se/services/racinginfo/v1/api/products/${gameType}`
-        const ResultsURL = `https://www.atg.se/services/racinginfo/v1/api/games/${resultId}`
+
         fetch(typeURL)
             .then((res) => {
                 if (!res.ok) {
@@ -76,11 +75,10 @@ export const RaceInfo = () => {
                     </select>
                     <button type="submit">SELECT</button>
                 </label>
-                {gameType}
             </form>
             {selectedInfo.sort(item => moment(item.startTime).fromNow).map(item =>
-                <ul>
-                    <Upcoming> <Display key={item.startTime} {...item} gameType={gameType} /></Upcoming >
+                <ul >
+                    <Upcoming key={item.startTime}> <Display key={item.startTime} {...item} gameType={gameType} /></Upcoming >
                 </ul>
             )
             } {selectedResults.sort(item => moment(item.startTime).fromNow).map(item =>

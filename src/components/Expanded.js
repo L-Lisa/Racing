@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import moment from "moment"
+import React from "react"
 import styled from "styled-components/macro";
 
 const DetailsDiv = styled.div`
@@ -40,12 +39,12 @@ export const Expanded = ({ startsArrays, expand }) => {
             <StartsInfo>
                 <>
                     {startsArrays.map(singleStart =>
-                        <>
+                        <>key={singleStart.id}
                             <Astart>
 
                             </Astart>
                             {singleStart.map(team =>
-                                <>
+                                <>key={team.id}
                                     <Team className={expand ? `hidden` : `expand`}>
                                         <DetailsDiv>
                                             <span> Startnr: {team.number}  {" "}</span>{" "}
