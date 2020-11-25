@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from "react"
 import moment from "moment"
-import { DisplayItem } from './DisplayItem'
 import styled from "styled-components/macro";
 import { Expanded } from "./Expanded"
 
+const RacesInfo = styled.div`
+background:papayawhip;
+`;
+const Wrapper = styled.main`
+background:#ffffffa3;
+padding:5px;
+`;
+const RacesDiv = styled.article`
+background:#d9d9de;
+`;
+const GameInfo = styled.div`
+background:#89afdc;
+padding:3px;
+text-align:center;
+`;
 
 export const Display = ({ id, startTime, gameType }) => {
     const errorMessage = { code: 403, message: "cant fetch data from games" };
@@ -27,7 +41,6 @@ export const Display = ({ id, startTime, gameType }) => {
                 console.log(json)
                 console.log(json.races)
                 setRacesArr(json.races)
-
             })
     }, [id])
 
@@ -53,13 +66,6 @@ export const Display = ({ id, startTime, gameType }) => {
                             <p>Scheduled start time: {raceItem.scheduledStartTime}</p>
                             <div onClick={ShowDetails}>Start info: ⬇️</div>
                         </RacesDiv>
-
-                        {/*   {raceItem.starts.map(start =>
-                            <p>{start.number}</p>)}
-         {raceItem.starts.map(start => start.map(team =>
-                            <p> {team.driver.firstName}</p>
-                        ))}  */}
-
                         {showInfo && <Expanded startsArrays={startsArrays} setShowInfo={setShowInfo} showInfo={showInfo} expand={expand} />}
                     </RacesInfo>
                 </>
@@ -68,19 +74,3 @@ export const Display = ({ id, startTime, gameType }) => {
     )
 }
 
-const RacesInfo = styled.div`
-background:papayawhip;
-
-`;
-const Wrapper = styled.main`
-background:#ffffffa3;
-padding:5px;
-`;
-const RacesDiv = styled.article`
-background:#d9d9de;
-`;
-const GameInfo = styled.div`
-background:#89afdc;
-padding:3px;
-text-align:center;
-`

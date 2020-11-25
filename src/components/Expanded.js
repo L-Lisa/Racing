@@ -2,6 +2,35 @@ import React, { useState } from "react"
 import moment from "moment"
 import styled from "styled-components/macro";
 
+const DetailsDiv = styled.div`
+display:flex;
+`;
+const StartsInfo = styled.div`
+background:lightgray;
+`;
+const Team = styled.div`
+background:blue;
+display:flex;
+border: 1px solid red;
+.expand {
+display: inline;
+}
+.hidden{
+    position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap; 
+      border: 0; 
+}
+`;
+const Astart = styled.article`
+background:cornflowerblue;
+margin:4px;
+`;
 
 export const Expanded = ({ startsArrays, expand }) => {
 
@@ -33,34 +62,5 @@ export const Expanded = ({ startsArrays, expand }) => {
         </>
     )
 }
-const DetailsDiv = styled.div`
-display:flex;
-`;
-const StartsInfo = styled.div`
-background:lightgray;
-`;
-const Team = styled.div`
-background:blue;
-display:flex;
-border: 1px solid red;
-.expand {
-display: inline;
-}
-.hidden{
-    position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap; 
-      border: 0; 
-}
 
-`;
-const Astart = styled.article`
-background:cornflowerblue;
-margin:4px;
-`;
 
