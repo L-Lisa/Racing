@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 
 const DetailsDiv = styled.div`
 display:flex;
+flex-wrap: wrap;
 `;
 const StartsInfo = styled.div`
 background:lightgray;
@@ -51,6 +52,9 @@ export const Expanded = ({ startsArrays, expand }) => {
                                             <span> {team.driver.firstName}
                                                 {team.driver.lastName}  </span>{" "}
                                             <span>   Horse: {team.horse.name}</span>
+                                            <span>   Horse: {team.horse.pedigree.father.name}</span>
+                                            <span>   Trainer: {team.horse.trainer.firstName} {team.horse.trainer.lastName}</span>
+                                            {/*    {(team.result.finishOrder) && <span>   Result: {team.result.finishOrder}</span>} */}
                                         </DetailsDiv>
                                     </Team>
                                 </>
