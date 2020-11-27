@@ -25,6 +25,7 @@ export const Display = ({ id, startTime, gameType }) => {
     const [showInfo, setShowInfo] = useState(false)
     const [expand, setExpand] = useState(false)
     const startsArrays = racesArr.map(startItem => startItem.starts)
+
     useEffect(() => {
         fetch(typeURL)
             .then((res) => {
@@ -34,14 +35,21 @@ export const Display = ({ id, startTime, gameType }) => {
                 return res.json();
             })
             .then((json) => {
+                console.log(json)
                 setRacesArr(json.races)
+                console.log(startsArrays)
+                /*   setFirstName(startsArrays.map(singlestrtArr => singlestrtArr.map(team => team.driver.firstName)))
+            }) */
             })
     }, [id])
 
     const ShowDetails = () => {
         setShowInfo(!showInfo)
         setExpand(!expand)
+
     }
+    //Information about the game should contain following data: - Game type - Races information
+    //For each race: - Race number - Race name - Race start time - Starts information (see below)
     return (
         <Wrapper>
             <GameInfo>
